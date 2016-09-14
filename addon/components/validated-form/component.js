@@ -80,6 +80,7 @@ export default Component.extend({
         this.send('reset');
       };
 
+
       if (this.get('isValid')) {
         new RSVP.Promise((resolve, reject) => {
           this.set('_promiseState', 'pending');
@@ -93,6 +94,9 @@ export default Component.extend({
           this.set('submitErrors', errors);
           this.set('_promiseState', 'rejected');
         });
+      } else {
+        const a = this.get('fields').filterBy('valid', false);
+        this.sendAction('onError', a);
       }
     },
 
