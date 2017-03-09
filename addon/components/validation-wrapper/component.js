@@ -103,6 +103,7 @@ export default Component.extend({
   },
 
   didReceiveAttrs() {
+    this._super(...arguments);
     const register = this.get('register');
 
     register(this);
