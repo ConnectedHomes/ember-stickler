@@ -36,14 +36,14 @@ export default Component.extend({
   },
 
   formState: computed('isValid', '_promiseState', function() {
-    const state = this.get('_promiseState');
-    const isValid = this.get('isValid');
-    const disableDuringSubmit = this.get('disableDuringSubmit');
-    const enableWhenDefault = this.get('enableWhenDefault');
-    const isDefault = state === 'default';
+    const state = this.get('_promiseState'),
+      isValid = this.get('isValid'),
+      disableDuringSubmit = this.get('disableDuringSubmit'),
+      enableWhenDefault = this.get('enableWhenDefault'),
+      isDefault = (state === 'default');
 
     return {
-      isDefault: state === 'default',
+      isDefault,
       isPending: state === 'pending',
       isResolved: state === 'resolved',
       isRejected: state === 'rejected',
@@ -54,9 +54,7 @@ export default Component.extend({
   }),
 
   isValid: computed('fields.@each.valid', function() {
-    let fields = this.get('fields') || [];
-
-    return fields
+    return this.get('fields')
       .every((field) => {
         return field.get('valid');
       });

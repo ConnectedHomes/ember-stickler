@@ -22,9 +22,8 @@ export default Component.extend({
   forget: undefined,
 
   willDestroy() {
-    this._super();
-    let forget = this.get('forget'),
-      register = this.get('register');
+    this._super(...arguments);
+    let forget = this.get('forget');
 
     forget(this);
   },
@@ -102,7 +101,7 @@ export default Component.extend({
     }
   },
 
-  didUpdateAttrs() {
+  didInsertElement() {
     this._super(...arguments);
 
     const register = this.get('register');
