@@ -80,6 +80,7 @@ export default Component.extend({
         this.send('reset');
       };
 
+
       if (this.get('isValid')) {
         new RSVP.Promise((resolve, reject) => {
           this.set('_promiseState', 'pending');
